@@ -1,20 +1,30 @@
 # React Todo App
 
-React + Vite を使ったシンプルなTodoアプリ
+Vite + React で構築したシンプルな Todo アプリです。  
+ローカルストレージに保存するため、ページをリロードしてもタスクは保持されます。
 
-## 機能
-- タスクの追加
-- 完了／未完了の切り替え
-- タスク削除
-- ローカルストレージに保存（ページ再読み込みしても保持）
-- フィルタ（すべて／未完了／完了）
+## 特徴
+
+- **追加 / 削除 / 完了トグル** が可能
+- **フィルタ機能**（すべて / 未完了 / 完了）
+- **インライン編集**（ダブルクリックで編集 → Enter確定 / Escキャンセル）
+- **ローカルストレージ保存**（再読み込みしてもタスクが消えない）
 
 ## 使用技術
+
 - React 18
 - Vite
-- CSS カスタムプロパティ
+- Custom Hook (`useLocalStorage`)
+- CSS（変数・hover効果・簡単なレスポンシブ）
+
+## 画面イメージ
+
+![screenshot](docs/screenshot.png)
 
 ## セットアップ方法
+
 ```bash
+git clone https://github.com/<yourname>/react-todo-app.git
+cd react-todo-app
 npm install
 npm run dev
