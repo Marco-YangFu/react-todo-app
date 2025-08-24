@@ -1,0 +1,45 @@
+:root{
+  --blue:#3498db;
+  --green:#2ecc71;
+  --red:#e74c3c;
+  --card:#fff;
+  --bg:#f6f8fa;
+  --text:#222;
+}
+*{box-sizing:border-box}
+body{
+  font-family: "Noto Sans JP", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin:0;
+  padding:24px;
+  display:flex;
+  justify-content:center;
+}
+.app{
+  width:100%;
+  max-width:640px;
+  background: linear-gradient(180deg,#fff,#fbfdff);
+  padding:20px;
+  border-radius:8px;
+  box-shadow:0 6px 20px rgba(20,30,40,0.08);
+}
+h1{text-align:center;margin:0 0 12px 0}
+
+.todo-input{display:flex;gap:8px;margin-bottom:12px}
+.todo-input input{flex:1;padding:10px;border:1px solid #ddd;border-radius:6px}
+.todo-input button{padding:10px 14px;border-radius:6px;border:none;background:var(--blue);color:#fff;cursor:pointer}
+
+.controls{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.filters button{margin-right:8px;padding:6px 10px;border-radius:6px;border:1px solid #ddd;background:#fff}
+.filters button.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.summary{font-size:14px;color:#666}
+
+.todo-list{list-style:none;padding:0;margin:12px 0 0 0}
+.todo-item{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:6px;background:var(--card);border:1px solid #eee;margin-bottom:8px}
+.todo-item.done .text{ text-decoration:line-through;color:#aaa }
+.text{flex:1;margin-right:12px;cursor:default}
+.buttons button{margin-left:6px;padding:6px 8px;border-radius:6px;border:none;cursor:pointer}
+.btn-done{background:var(--green);color:#fff}
+.btn-delete{background:var(--red);color:#fff}
+.empty{text-align:center;color:#777;padding:20px}
