@@ -18,8 +18,8 @@ Vite + React で構築したシンプルな Todo アプリです。
 - CSS（変数・hover効果・簡単なレスポンシブ）
 
 ## 画面イメージ
+<img width="367" height="454" alt="スクリーンショット 2025-08-24 204818" src="https://github.com/user-attachments/assets/4b5adf15-2fcc-4e80-8090-073bb9e36080" />
 
-![screenshot](docs/screenshot.png)
 
 ## セットアップ方法
 
