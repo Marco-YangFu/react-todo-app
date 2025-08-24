@@ -43,3 +43,16 @@ h1{text-align:center;margin:0 0 12px 0}
 .btn-done{background:var(--green);color:#fff}
 .btn-delete{background:var(--red);color:#fff}
 .empty{text-align:center;color:#777;padding:20px}
+/* 例: 編集中の input を少し目立たせる */
+.todo-item input {
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 14px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  outline: none;
+}
+.todo-item input:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52,152,219,0.15);
+}
