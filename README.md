@@ -1,12 +1,30 @@
-# React + Vite
+# React Todo App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Vite + React で構築したシンプルな Todo アプリです。  
+ローカルストレージに保存するため、ページをリロードしてもタスクは保持されます。
 
-Currently, two official plugins are available:
+## 特徴
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **追加 / 削除 / 完了トグル** が可能
+- **フィルタ機能**（すべて / 未完了 / 完了）
+- **インライン編集**（ダブルクリックで編集 → Enter確定 / Escキャンセル）
+- **ローカルストレージ保存**（再読み込みしてもタスクが消えない）
 
-## Expanding the ESLint configuration
+## 使用技術
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React 18
+- Vite
+- Custom Hook (`useLocalStorage`)
+- CSS（変数・hover効果・簡単なレスポンシブ）
+
+## 画面イメージ
+<img width="367" height="454" alt="スクリーンショット 2025-08-24 204818" src="https://github.com/user-attachments/assets/4b5adf15-2fcc-4e80-8090-073bb9e36080" />
+
+
+## セットアップ方法
+
+```bash
+git clone https://github.com/<yourname>/react-todo-app.git
+cd react-todo-app
+npm install
+npm run dev
