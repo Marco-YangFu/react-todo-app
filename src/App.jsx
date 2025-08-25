@@ -1,26 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState} from "react";
 import TodoInput from "./components/TodoInput";
 import TodoList from "./components/TodoList";
-import useLocalStorage from "./hooks/useLocalStorage";
+
+const STORAGE_KEY = "vite_react_todos_v1";
 
 export default function App() {
-  // ✅ localStorage 連携はこの1行に集約（初期値は []）
-  const [todos, setTodos] = useLocalStorage("vite_react_todos_v1", []);
+  // State: Todos は配列。{id, text, done}の要素を持つ
+  const [todos, setTodos] = useState(() => {
+    // 初回レンダー時に localStorage から復元
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch {
+      return [];
+    }
+  });
 
-  // フィルタ state
+  // State: フィルタ(all / active / done)
   const [filter, setFilter] = useState("all");
 
-  // 追加
+  // 副作用: todos が変わったら localStorage に保存
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+  }, [todos]);
+
+  // Todo を追加
   const addTodo = (text) => {
     if (!text || !text.trim()) return;
-    const newTodo = { id: Date.now(), text: text.trim(), done: false };
+    const newTodo = { id: Date.now(), text: text.trim(), done: false};
     setTodos((prev) => [newTodo, ...prev]);
-  };
+  }; 
 
   // 完了トグル
   const toggleTodo = (id) => {
-    setTodos((prev) =>
-      prev.map((t) => (t.id === id ? { ...t, done: !t.done } : t))
+    setTodos((prev) => 
+      prev.map((t) => (t.id === id ? { ...t, done: !t.done} : t))
     );
   };
 
@@ -33,15 +47,8 @@ export default function App() {
   const visibleTodos = todos.filter((t) => {
     if (filter === "active") return !t.done;
     if (filter === "done") return t.done;
-    return true; // "all"
+    return true;
   });
-
-  // App.jsx 内：ハンドラ追加
-  const updateTodo = (id, nextText) => {
-    setTodos((prev) =>
-      prev.map((t) => (t.id === id ? { ...t, text: nextText } : t))
-    );
-  };
 
   return (
     <div className="app">
@@ -54,15 +61,13 @@ export default function App() {
           <button
             type="button"
             className={filter === "all" ? "active" : ""}
-            aria-pressed={filter === "all"}
             onClick={() => setFilter("all")}
           >
             すべて
           </button>
-          <button
+          <button 
             type="button"
             className={filter === "active" ? "active" : ""}
-            aria-pressed={filter === "active"}
             onClick={() => setFilter("active")}
           >
             未完了
@@ -70,7 +75,6 @@ export default function App() {
           <button
             type="button"
             className={filter === "done" ? "active" : ""}
-            aria-pressed={filter === "done"}
             onClick={() => setFilter("done")}
           >
             完了
@@ -78,16 +82,18 @@ export default function App() {
         </div>
 
         <div className="summary">
-          全 {todos.length} 件 / 完了 {todos.filter((t) => t.done).length} 件
-        </div>
+          全 {todos.length} 件 / 完了 {todos.filter((t) => t.done).length} 件            
+        </div>        
       </div>
 
-      <TodoList
-        todos={visibleTodos}
-        onToggle={toggleTodo}
-        onRemove={removeTodo}
-        onUpdate={updateTodo}
-      />
+    <TodoList
+      todos={visibleTodos}
+      onToggle={toggleTodo}
+      onRemove={removeTodo}
+    />
     </div>
   );
+
+
+
 }
